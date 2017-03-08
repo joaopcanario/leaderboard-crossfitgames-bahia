@@ -72,10 +72,22 @@
 }
 
 .authors {
-  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
 .centered-table {
   margin-right: auto;
   margin-left: auto;
+}
+
+.panel {
+  width: 80% !important;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.leaderboard-description {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
