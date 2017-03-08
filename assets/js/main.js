@@ -17,7 +17,7 @@ function generateLeaderboard(file) {
         var athletes = JSON.parse(json);
         var pos = 1, next = 1, prev = 0;
 
-        var leaderboard = document.getElementById('leaderboard');
+        var leaderboard = document.getElementById('leaderboard-content');
         leaderboard.innerHTML = "";
 
         athletes.forEach(athlete => {
@@ -36,9 +36,9 @@ function generateLeaderboard(file) {
                 <td>${athlete.overallScore}</td>
                 <td>${athlete.wod1Display} (${athlete.wod1Rank})</td>
                 <td>${athlete.wod2Display} (${athlete.wod2Rank})</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td>--(--)</td>
+                <td>--(--)</td>
+                <td>--(--)</td>
               </tr>
             `;
 
