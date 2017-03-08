@@ -28,20 +28,29 @@
       <div class="demo-ribbon"></div>
       <main class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
-          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-          <div class="center demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <div class="center panel demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
             <h3 class="center title">Leaderboard - Crossfit Games - Bahia</h3>
 
-            <div class="demo-crumbs mdl-color-text--grey-500 authors">
-              Criado por <a href="http://github.com/cristianossd" target="_blank">Cristiano Santos</a> e
-              <a href="http://github.com/joaopcanario" target="_blank">João Paulo Canário</a>
+            <div class="leaderboard-type">
+              <button id="menLeaderboard" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                MASCULINO RX
+              </button>
+
+              <button id="womenLeaderboard" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                FEMININO RX
+              </button>
+            </div>
+
+            <div class="demo-crumbs mdl-color-text--grey-500 leaderboard-description">
+              Exibindo leaderboard para <strong><span id="type">MASCULINO RX</span></strong>
             </div>
 
             <table class="centered-table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
               <thead>
                 <tr>
+                  <th class="mdl-data-table__cell--non-numeric">#</th>
                   <th class="mdl-data-table__cell--non-numeric">Nome</th>
-                  <th>Box</th>
+                  <th class="mdl-data-table__cell--non-numeric">Box</th>
                   <th>Score</th>
                   <th>17.1</th>
                   <th>17.2</th>
@@ -50,19 +59,15 @@
                   <th>17.5</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">Rich Froning Jr</td>
-                  <td>Mayhem Freedom</td>
-                  <td>2</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
+              <tbody id="leaderboard">
               </tbody>
             </table>
+
+            <div class="demo-crumbs mdl-color-text--grey-500 authors">
+              Criado por <a href="http://github.com/cristianossd" target="_blank">Cristiano Santos</a> e
+              <a href="http://github.com/joaopcanario" target="_blank">João Paulo Canário</a> <br />
+              Informações processadas do <a href="http://games.crossfit.com">Crossfit Games</a>
+            </div>
           </div>
         </div>
       </main>
@@ -81,6 +86,60 @@
         };
         xobj.send(null);
       }
+
+      function generateLeaderboard(file) {
+        loadJSON(file, function(json) {
+          var athletes = JSON.parse(json);
+          var pos = 1, next = 1, prev = 0;
+
+          var leaderboard = document.getElementById('leaderboard');
+          leaderboard.innerHTML = "";
+
+          athletes.forEach(athlete => {
+            if (prev != athlete.overallScore) {
+              pos = next;
+            }
+
+            prev = athlete.overallScore;
+            next++;
+
+            var elem = `
+              <tr>
+                <td>${pos}</td>
+                <td class="mdl-data-table__cell--non-numeric">${athlete.name}</td>
+                <td>${athlete.affiliate}</td>
+                <td>${athlete.overallScore}</td>
+                <td>${athlete.wod1Display} (${athlete.wod1Rank})</td>
+                <td>${athlete.wod2Display} (${athlete.wod2Rank})</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+            `;
+
+            leaderboard.innerHTML += elem;
+          });
+        });
+      }
+
+      function updateLeaderboardDescription(text) {
+        var type = document.getElementById('type');
+        type.innerHTML = text;
+      };
+
+      generateLeaderboard("men_leaderboard.json");
+
+      var men = document.getElementById('menLeaderboard');
+      men.addEventListener('click', () => {
+        updateLeaderboardDescription('MASCULINO RX');
+        generateLeaderboard("men_leaderboard.json");
+      });
+
+      var women = document.getElementById('womenLeaderboard');
+      women.addEventListener('click', () => {
+        updateLeaderboardDescription('FEMININO RX');
+        generateLeaderboard("women_leaderboard.json");
+      });
     </script>
   </body>
 </html>
