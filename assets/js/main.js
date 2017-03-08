@@ -1,33 +1,50 @@
 function loadJSON(file, callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', file, true);
 
-var xobj = new XMLHttpRequest();
-xobj.overrideMimeType("application/json");
-xobj.open('GET', file, true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
 
-xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-        callback(xobj.responseText);
-    }
-};
-
-xobj.send(null);
+    xobj.send(null);
 }
 
-function createLeaderboard(response) {
-var data = JSON.parse(response);
+function generateLeaderboard(file) {
+    loadJSON(file, function(json) {
+        var athletes = JSON.parse(json);
+        var pos = 1, next = 1, prev = 0;
 
-var score = document.getElementById("score");
-var tr;
+        var leaderboard = document.getElementById('leaderboard');
+        leaderboard.innerHTML = "";
 
-score.innerHTML = "";
+        athletes.forEach(athlete => {
+            if (prev != athlete.overallScore) {
+               pos = next;
+            }
 
-for (var i = 0; i < data.length; i++) {
-    tr = document.createElement('tr');
+            prev = athlete.overallScore;
+            next++;
 
-    tr.innerHTML = "<td class=\"mdl-data-table__cell--non-numeric\">" + data[i].name + "</td><td>" + data[i].affiliate + "</td><td>" + data[i].overallScore + "</td><td>" + data[i].wod1Display + "</td><td>" + data[i].wod2Display + "</td><td>-</td><td>-</td><td>-</td>";
+            var elem = `
+              <tr>
+                <td>${pos}</td>
+                <td class="mdl-data-table__cell--non-numeric">${athlete.name}</td>
+                <td>${athlete.affiliate}</td>
+                <td>${athlete.overallScore}</td>
+                <td>${athlete.wod1Display} (${athlete.wod1Rank})</td>
+                <td>${athlete.wod2Display} (${athlete.wod2Rank})</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+            `;
 
-    score.appendChild(tr);
+            leaderboard.innerHTML += elem;
+        });
+    });
 }
-}
 
-loadJSON("assets/data/women_leaderboard.json", createLeaderboard);
+generateLeaderboard("assets/data/women_leaderboard.json");
