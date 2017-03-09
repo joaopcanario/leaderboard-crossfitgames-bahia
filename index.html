@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/tablesaw.css">
   </head>
+
   <body>
     <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
       <div class="demo-ribbon"></div>
@@ -21,43 +22,42 @@
       <main class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
           <div class="center panel demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-
             <h3 class="center title">Leaderboard - Crossfit Games 2017 - Bahia</h3>
 
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                <div class="mdl-tabs__tab-bar">
-                    <a href="#leaderboard" class="mdl-tabs__tab is-active" onclick="generateLeaderboard('assets/data/women_leaderboard.json')">Feminino RX</a>
-                    <a href="#leaderboard" class="mdl-tabs__tab" onclick="generateLeaderboard('assets/data/men_leaderboard.json')">Masculino RX</a>
-                </div>
-                <p></p>
+              <div class="mdl-tabs__tab-bar">
+                <a id="womenLeaderboard" href="#leaderboard" class="mdl-tabs__tab is-active">Feminino RX</a>
+                <a id="menLeaderboard" href="#leaderboard" class="mdl-tabs__tab">Masculino RX</a>
+              </div>
+              <p></p>
 
-                <div class="table-responsive">
-                    <table class="centered-table mdl-data-table mdl-js-data-table tablesaw" data-tablesaw-mode="stack">
-                      <thead>
-                        <tr>
-                          <th class="mdl-data-table__cell--non-numeric">#</th>
-                          <th class="mdl-data-table__cell--non-numeric">Nome</th>
-                          <th class="mdl-data-table__cell--non-numeric">Box</th>
-                          <th>Score</th>
-                          <th>17.1</th>
-                          <th>17.2</th>
-                          <th>17.3</th>
-                          <th>17.4</th>
-                          <th>17.5</th>
-                        </tr>
-                      </thead>
-                      <tbody id="leaderboard-content">
-                      </tbody>
-                    </table>
-                </div>
+              <div class="table-responsive">
+                  <table class="centered-table mdl-data-table mdl-js-data-table tablesaw" data-tablesaw-mode="stack">
+                    <thead>
+                      <tr>
+                        <th class="mdl-data-table__cell--non-numeric">#</th>
+                        <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                        <th class="mdl-data-table__cell--non-numeric">Box</th>
+                        <th>Score</th>
+                        <th>17.1</th>
+                        <th>17.2</th>
+                        <th>17.3</th>
+                        <th>17.4</th>
+                        <th>17.5</th>
+                      </tr>
+                    </thead>
+                    <tbody id="leaderboard-content">
+                    </tbody>
+                  </table>
+              </div>
             </div>
 
             <div class="demo-crumbs mdl-color-text--grey-500 authors">
-                Desenvolvido por <a href="http://github.com/cristianossd" target="_blank">Cristiano Santos</a> e
-                <a href="http://github.com/joaopcanario" target="_blank">João Paulo Canário</a> <br />
-                Todas as informações foram processadas a partir de <a href="http://games.crossfit.com">Reebok CrossFit Games</a>.
-                <p><br></p>
-                <i>CrossFit is a registered trademark &reg; of CrossFit, Inc.</i>
+              Desenvolvido por <a href="http://github.com/cristianossd" target="_blank">Cristiano Santos</a> e
+              <a href="http://github.com/joaopcanario" target="_blank">João Paulo Canário</a> <br />
+              Todas as informações foram processadas a partir de <a href="http://games.crossfit.com">Reebok CrossFit Games</a>.
+              <p><br></p>
+              <i>CrossFit is a registered trademark &reg; of CrossFit, Inc.</i>
             </div>
         </div>
       </main>
