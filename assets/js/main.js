@@ -6,24 +6,6 @@ function loadRandomImage() {
   document.getElementById("topBG").style.backgroundImage = "url(" + dir + images[randomCount] + ")";
 }
 
-function tableToJson(table) {
-  var data = [];
-
-  // go through cells
-  for (var i = 1; i < table.rows.length; i++) {
-    var tableRow = table.rows[i];
-
-    // create an array rather than an object
-    var rowData = [];
-    for (var j = 0; j < tableRow.cells.length; j++) {
-        rowData.push(tableRow.cells[j].innerHTML)
-    }
-    data.push(rowData);
-  }
-
-  return data;
-}
-
 function loadJSON(file, callback) {
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
@@ -83,15 +65,30 @@ function leaderboard2PDF(file, type) {
   var table = document.getElementsByTagName("table")[0];
   var tbody = table.getElementsByTagName("tbody")[0];
 
-  var columns = ["#", "Nome", "Box", "Score", "17.1", "17.2", "17.3", "17.4", "17.5"];
-  var data = tableToJson(tbody);
+  var columns = ["Atleta / Box", "17.1", "17.2", "17.3", "17.4", "17.5"];
+  var data = [];
+  var tableRow;
+
+  // go through cells
+  for (var i = 1; i < table.rows.length; i++) {
+    tableRow = table.rows[i];
+
+    data.push([`${tableRow.cells[0].innerHTML} (${tableRow.cells[3].innerHTML}) \t${tableRow.cells[1].innerHTML} \n\n${tableRow.cells[2].innerHTML}`,
+      tableRow.cells[4].innerHTML,
+      tableRow.cells[5].innerHTML,
+      tableRow.cells[6].innerHTML,
+      tableRow.cells[7].innerHTML,
+      tableRow.cells[8].innerHTML,
+    ]);
+  }
 
   var doc = new jsPDF();
 
   doc.autoTable(columns, data, {
     startY: 101,
     styles: {overflow: 'linebreak', columnWidth: 'wrap'},
-    margin: {top: 101},
+    columnStyles: {text: {columnWidth: 'auto'}},
+    margin: {left: 22, top: 101},
     addPageContent: function(data) {
       doc.setFontSize(15);
       doc.setTextColor(80);
