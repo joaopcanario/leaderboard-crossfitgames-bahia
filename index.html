@@ -9,6 +9,7 @@
 
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-red.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -17,13 +18,21 @@
 
   <body>
     <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-      <div class="demo-ribbon"></div>
+      <div id="topBG" class="demo-ribbon"></div>
 
       <main class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
           <div class="center panel demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-            <h3 class="center title">Leaderboard - Crossfit Games 2017 - Bahia</h3>
-
+            <object type="image/svg+xml" data="/assets/img/games-logo-2017.svg"></object>
+            <p></p>
+            <p></p>
+            <h3 class="center title">Bahia Leaderboard</h3>
+            <div class="mdl-color-text--grey-800">
+                Não consegue visualizar o leaderboard?
+                <p></p>
+                <a id="viewAsPDF" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Vizualizar em PDF</a>
+                <p></p>
+            </div>
             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
               <div class="mdl-tabs__tab-bar">
                 <a id="womenLeaderboard" href="#leaderboard" class="mdl-tabs__tab is-active">Feminino RX</a>
@@ -31,7 +40,7 @@
               </div>
               <p></p>
 
-              <div class="table-responsive">
+              <div id="leaderboard-table" class="table-responsive">
                   <table class="centered-table mdl-data-table mdl-js-data-table tablesaw" data-tablesaw-mode="stack">
                     <thead>
                       <tr>
@@ -62,10 +71,12 @@
         </div>
       </main>
     </div>
-    <a href="mailto:cristianossd@gmail.com" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">ALGO DE ERRADO?</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.0/jspdf.plugin.autotable.js"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="assets/js/tablesaw.js"></script>
     <script src="assets/js/tablesaw-init.js"></script>
+    <script src="assets/js/convert-image-to-base64.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
