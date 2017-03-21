@@ -85,16 +85,26 @@ function leaderboard2PDF(file, type) {
   var doc = new jsPDF();
 
   doc.autoTable(columns, data, {
-    startY: 101,
+    startY: 96,
     styles: {overflow: 'linebreak', columnWidth: 'wrap'},
     columnStyles: {text: {columnWidth: 'auto'}},
-    margin: {left: 22, top: 101},
+    margin: {left: 22, top: 96},
     addPageContent: function(data) {
+      var y_position = doc.internal.pageSize.height - 6;
+
+      // Header
       doc.setFontSize(15);
       doc.setTextColor(80);
       doc.setFontStyle('bold');
       doc.addImage(topPDFb64, 'JPEG', 57, 0, 95, 95);
-      doc.text(type, data.settings.margin.left, 98);
+      doc.text(type, data.settings.margin.left, 94);
+
+      // Footer
+      doc.setFontSize(8);
+      doc.setTextColor(20);
+      doc.setFontStyle('normal');
+      doc.text("Desenvolvedores: Cristiano Santos (CrosFit Imbuí) e João Paulo Canário (CrossFit Barra Action)", 42, y_position - 6);
+      doc.text("Todas as informações foram processadas a partir do site da Reebok CrossFit Games.\n\t\t\tCrossFit is a registered trademark \u00AE of CrossFit, Inc.", 50, y_position);
     }
   });
 
