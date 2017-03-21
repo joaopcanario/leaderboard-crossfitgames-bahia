@@ -69,7 +69,7 @@ function generateLeaderboard(file) {
           <td>${athlete.wod1Display} (${athlete.wod1Rank})</td>
           <td>${athlete.wod2Display} (${athlete.wod2Rank})</td>
           <td>${athlete.wod3Display} (${athlete.wod3Rank})</td>
-          <td>--(--)</td>
+          <td>${athlete.wod4Display} (${athlete.wod4Rank})</td>
           <td>--(--)</td>
         </tr>
       `;
