@@ -61,7 +61,7 @@ function generateLeaderboard(file) {
   });
 }
 
-function leaderboard2PDF(file, type) {
+function leaderboard2PDF(type) {
   var table = document.getElementsByTagName("table")[0];
   var tbody = table.getElementsByTagName("tbody")[0];
 
@@ -133,8 +133,8 @@ women.addEventListener('click', () => {
 var viewAsPDF = document.getElementById('viewAsPDF');
 viewAsPDF.addEventListener('click', () => {
   if (men.className.includes("is-active")){
-    leaderboard2PDF("assets/data/men_leaderboard.json", "Masculino");
+    leaderboard2PDF("Masculino");
   } else {
-    leaderboard2PDF("assets/data/women_leaderboard.json", "Feminino");
+    leaderboard2PDF("Feminino");
   }
 });
