@@ -61,11 +61,7 @@ function generateLeaderboard(file) {
   });
 }
 
-<<<<<<< HEAD
-function leaderboard2PDF(file, type) {
-=======
 function leaderboard2PDF(type) {
->>>>>>> upstream/master
   var table = document.getElementsByTagName("table")[0];
   var tbody = table.getElementsByTagName("tbody")[0];
 
