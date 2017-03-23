@@ -88,7 +88,7 @@ function leaderboard2PDF(type) {
     startY: 96,
     styles: {overflow: 'linebreak', columnWidth: 'wrap'},
     columnStyles: {text: {columnWidth: 'auto'}},
-    margin: {left: 22, top: 96},
+    margin: {left: 10, top: 96},
     addPageContent: function(data) {
       var y_position = doc.internal.pageSize.height - 6;
 
