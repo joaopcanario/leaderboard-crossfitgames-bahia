@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-red.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/tablesaw.css">
   </head>
 
   <body>
@@ -22,38 +21,43 @@
 
       <main class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
-          <div class="center panel demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-            <object type="image/svg+xml" data="/assets/img/games-logo-2017.svg"></object>
+          <div class="center panel demo-content mdl-color--white mdl-shadow--4dp mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <object id="gamesLogo" type="image/svg+xml" data="/assets/img/games-logo-2017.svg"></object>
             <p></p>
             <p></p>
             <h3 class="center title">Bahia Leaderboard</h3>
-            <div class="mdl-color-text--grey-800">
+
+            <!-- Javascript isn't enabled -->
+            <noscript>
+              <link rel="stylesheet" href="assets/css/noscript.css">
+              <div>
+                <p></p>
+                <p></p>
+                <object id="norep" type="image/svg+xml" data="/assets/img/norep.svg"></object>
+                <br>
+                <p>Infelizmente, seu browser não está com o Javascript habilitado.<br><br>Habilite o javascript para que consiga visualizar o conteúdo da página.</p>
+                <p></p>
+                <p></p>
+              </div>
+            </noscript>
+
+            <!-- Javascript enabled -->
+            <div id="pdfMsg" class="mdl-color-text--grey-800">
                 Não consegue visualizar o leaderboard?
                 <p></p>
                 <a id="viewAsPDF" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Vizualizar em PDF</a>
                 <p></p>
             </div>
-            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            <div id="leaderboard-choice" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
               <div class="mdl-tabs__tab-bar">
-                <a id="womenLeaderboard" href="#leaderboard" class="mdl-tabs__tab is-active">Feminino RX</a>
-                <a id="menLeaderboard" href="#leaderboard" class="mdl-tabs__tab">Masculino RX</a>
+                <a id="womenLeaderboard" href="#leaderboard" class="mdl-tabs__tab is-active">Feminino</a>
+                <a id="menLeaderboard" href="#leaderboard" class="mdl-tabs__tab">Masculino</a>
               </div>
               <p></p>
 
               <div id="leaderboard-table" class="table-responsive">
                   <table class="centered-table mdl-data-table mdl-js-data-table tablesaw" data-tablesaw-mode="stack">
-                    <thead>
-                      <tr>
-                        <th class="mdl-data-table__cell--non-numeric">#</th>
-                        <th class="mdl-data-table__cell--non-numeric">Nome</th>
-                        <th class="mdl-data-table__cell--non-numeric">Box</th>
-                        <th>Score</th>
-                        <th>17.1</th>
-                        <th>17.2</th>
-                        <th>17.3</th>
-                        <th>17.4</th>
-                        <th>17.5</th>
-                      </tr>
+                    <thead id="leaderboard-head">
                     </thead>
                     <tbody id="leaderboard-content">
                     </tbody>
@@ -74,9 +78,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.0/jspdf.plugin.autotable.js"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="assets/js/tablesaw.js"></script>
-    <script src="assets/js/tablesaw-init.js"></script>
     <script src="assets/js/convert-image-to-base64.js"></script>
+    <script src="assets/js/leaderboardTable.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
