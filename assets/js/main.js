@@ -20,45 +20,40 @@ function loadJSON(file, callback) {
   xobj.send(null);
 }
 
-function generateLeaderboard(file) {
-  loadJSON(file, function(json) {
-    var athletes = JSON.parse(json);
-    var pos = 1, next = 1, prev = 0;
-
-    var leaderboard = document.getElementById('leaderboard-content');
-    leaderboard.innerHTML = "";
-
-    athletes.forEach(athlete => {
-      if (prev != athlete.overallScore) {
-        pos = next;
-      }
-
-      prev = athlete.overallScore;
-      next++;
-
-      var splited_name = athlete.name.split(" ");
-
-      if (splited_name.length > 3) {
-        athlete.name = splited_name[0] + " " + splited_name[1] + " " + splited_name[splited_name.length - 1];
-      }
-
-      var elem = `
-        <tr>
-          <td>${pos}</td>
-          <td class="mdl-data-table__cell--non-numeric">${athlete.name}</td>
-          <td>${athlete.affiliate}</td>
-          <td>${athlete.overallScore}</td>
-          <td>${athlete.wod1Display} (${athlete.wod1Rank})</td>
-          <td>${athlete.wod2Display} (${athlete.wod2Rank})</td>
-          <td>${athlete.wod3Display} (${athlete.wod3Rank})</td>
-          <td>${athlete.wod4Display} (${athlete.wod4Rank})</td>
-          <td>--(--)</td>
-        </tr>
-      `;
-
-      leaderboard.innerHTML += elem;
-    });
+function saveLeaderboard(file, key) {
+  loadJSON(file, function (data){
+    window.sessionStorage[key] = data;
   });
+}
+
+function generateLeaderboard(key) {
+  var athletes = JSON.parse(window.sessionStorage[key]);
+  var pos = 1, next = 1, prev = 0;
+
+  var leaderboardHead = document.getElementById('leaderboard-head');
+  leaderboardHead.innerHTML = getLeaderboardHead();
+
+  var leaderboardContent = document.getElementById('leaderboard-content');
+  leaderboardContent.innerHTML = "";
+
+  athletes.forEach(athlete => {
+    if (prev != athlete.overallScore) {
+      pos = next;
+    }
+
+    prev = athlete.overallScore;
+    next++;
+
+    var splited_name = athlete.name.split(" ");
+
+    if (splited_name.length > 3) {
+      athlete.name = splited_name[0] + " " + splited_name[1] + " " + splited_name[splited_name.length - 1];
+    }
+
+    leaderboardContent.innerHTML += getLeaderboardTableContent(pos, athlete);
+  });
+
+  initAccordion();
 }
 
 function leaderboard2PDF(type) {
@@ -112,22 +107,25 @@ function leaderboard2PDF(type) {
 }
 
 var topPDFb64 = null;
-
 convertImgToBase64('assets/img/top-pdf.jpg', function(base64Img) {
     topPDFb64 = base64Img;
 }, 'image/png')
 
 loadRandomImage();
-generateLeaderboard("assets/data/women_leaderboard.json");
+
+saveLeaderboard("assets/data/women_leaderboard.json", "women");
+saveLeaderboard("assets/data/men_leaderboard.json", "men");
+
+generateLeaderboard("women");
 
 var men = document.getElementById('menLeaderboard');
 men.addEventListener('click', () => {
-  generateLeaderboard("assets/data/men_leaderboard.json");
+  generateLeaderboard("men");
 });
 
 var women = document.getElementById('womenLeaderboard');
 women.addEventListener('click', () => {
-  generateLeaderboard("assets/data/women_leaderboard.json");
+  generateLeaderboard("women");
 });
 
 var viewAsPDF = document.getElementById('viewAsPDF');
@@ -136,5 +134,13 @@ viewAsPDF.addEventListener('click', () => {
     leaderboard2PDF("Masculino");
   } else {
     leaderboard2PDF("Feminino");
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (men.className.includes("is-active")){
+    generateLeaderboard("men");
+  } else {
+    generateLeaderboard("women");
   }
 });

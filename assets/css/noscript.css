@@ -1,0 +1,16 @@
+#leaderboard-table, #leaderboard-choice, #pdfMsg {display:none;}
+#topBG {height: 42vh;}
+#norep {height: 250px;}
+
+/* Resize Background*/
+@media only screen and (max-width: 499px) {
+  object {
+    width: 100%;
+    height: auto;
+    background-size: 100% auto !important;
+  }
+
+  h3 {
+    font-size: 6.5vw;
+  }
+}
