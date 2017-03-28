@@ -20,14 +20,18 @@ function loadJSON(file, callback) {
   xobj.send(null);
 }
 
-function saveLeaderboard(file, key) {
+function saveLeaderboard(file, key, generateAfter) {
   loadJSON(file, function (data){
-    window.sessionStorage[key] = data;
+    window.localStorage[key] = data;
+
+    if (generateAfter) {
+      generateLeaderboard(key);
+    }
   });
 }
 
 function generateLeaderboard(key) {
-  var athletes = JSON.parse(window.sessionStorage[key]);
+  var athletes = JSON.parse(window.localStorage[key]);
   var pos = 1, next = 1, prev = 0;
 
   var leaderboardHead = document.getElementById('leaderboard-head');
@@ -113,10 +117,8 @@ convertImgToBase64('assets/img/top-pdf.jpg', function(base64Img) {
 
 loadRandomImage();
 
-saveLeaderboard("assets/data/women_leaderboard.json", "women");
-saveLeaderboard("assets/data/men_leaderboard.json", "men");
-
-generateLeaderboard("women");
+saveLeaderboard("assets/data/women_leaderboard.json", "women", true);
+saveLeaderboard("assets/data/men_leaderboard.json", "men", false);
 
 var men = document.getElementById('menLeaderboard');
 men.addEventListener('click', () => {

@@ -77,7 +77,7 @@ function getLeaderboardTableContent(pos, atlt) {
                 <strong>17.4:</strong> ${atlt.wod4Display} (${atlt.wod4Rank})
               </li>
               <li class="mdl-list__item-sub-title odd">
-                <strong>17.5:</strong> --(--)
+                <strong>17.5:</strong> ${atlt.wod5Display} (${atlt.wod5Rank})
               </li>
             </ul>
           </div>
@@ -97,7 +97,7 @@ function getLeaderboardTableContent(pos, atlt) {
         <td>${atlt.wod2Display} (${atlt.wod2Rank})</td>
         <td>${atlt.wod3Display} (${atlt.wod3Rank})</td>
         <td>${atlt.wod4Display} (${atlt.wod4Rank})</td>
-        <td>--(--)</td>
+        <td>${atlt.wod5Display} (${atlt.wod5Rank})</td>
       </tr>
     `
   } else {
@@ -111,7 +111,7 @@ function getLeaderboardTableContent(pos, atlt) {
         <td>${atlt.wod2Display} (${atlt.wod2Rank})</td>
         <td>${atlt.wod3Display} (${atlt.wod3Rank})</td>
         <td>${atlt.wod4Display} (${atlt.wod4Rank})</td>
-        <td>--(--)</td>
+        <td>${atlt.wod5Display} (${atlt.wod5Rank})</td>
       </tr>
     `
   }
