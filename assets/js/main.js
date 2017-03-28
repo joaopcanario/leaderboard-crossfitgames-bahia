@@ -60,7 +60,7 @@ function generateLeaderboard(key) {
   initAccordion();
 }
 
-function leaderboard2PDF(type) {
+function leaderboard2PDF(type, _margin) {
   var table = document.getElementsByTagName("table")[0];
   var tbody = table.getElementsByTagName("tbody")[0];
 
@@ -72,7 +72,7 @@ function leaderboard2PDF(type) {
   for (var i = 1; i < table.rows.length; i++) {
     tableRow = table.rows[i];
 
-    data.push([`${tableRow.cells[0].innerHTML} (${tableRow.cells[3].innerHTML}) \t${tableRow.cells[1].innerHTML} \n\n${tableRow.cells[2].innerHTML}`,
+    data.push([`${tableRow.cells[0].innerHTML} (${tableRow.cells[3].innerHTML})   ${tableRow.cells[1].innerHTML} \n\n${tableRow.cells[2].innerHTML}`,
       tableRow.cells[4].innerHTML,
       tableRow.cells[5].innerHTML,
       tableRow.cells[6].innerHTML,
@@ -87,7 +87,7 @@ function leaderboard2PDF(type) {
     startY: 96,
     styles: {overflow: 'linebreak', columnWidth: 'wrap'},
     columnStyles: {text: {columnWidth: 'auto'}},
-    margin: {left: 10, top: 96},
+    margin: _margin,
     addPageContent: function(data) {
       var y_position = doc.internal.pageSize.height - 6;
 
@@ -133,9 +133,9 @@ women.addEventListener('click', () => {
 var viewAsPDF = document.getElementById('viewAsPDF');
 viewAsPDF.addEventListener('click', () => {
   if (men.className.includes("is-active")){
-    leaderboard2PDF("Masculino");
+    leaderboard2PDF("Masculino", {left: 2, top: 96});
   } else {
-    leaderboard2PDF("Feminino");
+    leaderboard2PDF("Feminino", {left: 4, top: 96});
   }
 });
 
