@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- .demo-ribbon {
+ #topBG {
   width: 100%;
   height: 80vh;
   background-color: #F5F5F5;
@@ -48,10 +48,6 @@
   margin-bottom: 80px;
 }
 
-.demo-layout.is-small-screen .demo-content {
-  padding: 40px 28px;
-}
-
 .demo-content h3 {
   margin-top: 48px;
 }
@@ -82,8 +78,19 @@
   margin-left: auto;
 }
 
+.table-headers {
+  padding: 0px 0px 0px 12px !important;
+  text-align: left !important;
+  text-transform: uppercase;
+}
+
+.table-headers h3 {
+  font-size: 2em;
+  margin: 18px 0px 18px 0px;
+}
+
 .panel {
-  width: 80% !important;
+  width: 90% !important;
   margin-left: auto;
   margin-right: auto;
 }
@@ -92,38 +99,95 @@ object {
   height: 215px;
 }
 
-/*#report {
-  position: fixed;
-  display: block;
-  right: 0;
-  bottom: 0;
-  margin-right: 40px;
-  margin-bottom: 40px;
-  z-index: 900;
-}*/
-
 .table-responsive {
   min-height: .01%;
   overflow-x: auto;
 }
 
-/*@media screen and (max-width: 768px) {
+.odd {
+  background-color: #EFF0F1;
+}
+
+.even {
+  background-color: #FFFFFF;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+div.accordion, div.accordion td {
+  cursor: pointer;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.details {
+  padding: 0 8px;
+  text-align: left;
+  display: none;
+}
+
+#opened {
+  display: none;
+}
+
+.table {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1320px) {
   td {
-    font-size: 16px;
+    padding: 0px 8px 0px 8px !important;
+    text-align: left !important;
   }
 
-  td:nth-child(1) {
-    background-color: #dedede;
+  h5 {
+    padding: 0px 0px 0px 16px;
+    font-size: 1.25em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  td {
+    padding: 0px 0px 0px 8px !important;
+  }
+}
+
+@media only screen and (max-width: 572px) {
+  .panel {
+    width: 100% !important;
   }
 
-  td:nth-of-type(1):before {content: "# "; font-weight: bold}
-  td:nth-of-type(2):before {content: "Nome: "; font-weight: bold}
-  td:nth-of-type(3):before {content: "Box: "; font-weight: bold}
-  td:nth-of-type(4):before {content: "Score: "; font-weight: bold}
+  .demo-content {
+    padding: 20px 14px;
+  }
 
-  td:nth-of-type(5):before {content: "17.1: "; font-weight: bold}
-  td:nth-of-type(6):before {content: "17.2: "; font-weight: bold}
-  td:nth-of-type(7):before {content: "17.3: "; font-weight: bold}
-  td:nth-of-type(8):before {content: "17.4: "; font-weight: bold}
-  td:nth-of-type(9):before {content: "17.5: "; font-weight: bold}
-}*/
+  h3 {
+    font-size: 6vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  object {
+    width: 80%;
+    height: auto;
+    background-size: 100% auto !important;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+
+  .table-headers h3 {
+    font-size: 1.2em;
+  }
+
+  h5 {
+    padding: 0px 0px 0px 0px;
+    font-size: 1em;
+  }
+
+  li {
+    font-size: .75em;
+  }
+}
