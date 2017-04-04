@@ -95,7 +95,7 @@
   margin-right: auto;
 }
 
-object {
+#gamesLogo {
   height: 215px;
 }
 
@@ -169,7 +169,7 @@ div.details {
 }
 
 @media only screen and (max-width: 500px) {
-  object {
+  #gamesLogo {
     width: 80%;
     height: auto;
     background-size: 100% auto !important;
